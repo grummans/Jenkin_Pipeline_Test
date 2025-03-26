@@ -1,5 +1,10 @@
 pipeline{
-  agent any
+  agent {
+    docker {
+      image 'gradle:8.4-jdk17'
+      args '-v $HOME/.gradle:/home/gradle/.gradle'
+    }
+  }
   stages{
     stage('Checkout'){
       steps{
