@@ -1,9 +1,6 @@
 pipeline{
   agent {
-    docker {
-      image 'gradle:8.4-jdk17'
-      args '-v $HOME/.gradle:/home/gradle/.gradle'
-    }
+    label 'gradle-jdk17'
   }
   stages{
     stage('Checkout'){
@@ -21,9 +18,15 @@ pipeline{
         ]) 
       }
     }
-    stage('Build'){
-      steps{
-        echo 'Build step'
+    stage('Build & Unit Test') {
+      steps {
+        sh 'gradle clean test'  // Chạy unit test tự động
+      }
+      post {
+        always {
+          junit '**/build/test-results/test/*.xml'
+              
+        }
       }
     }
   }
