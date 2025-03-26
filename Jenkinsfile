@@ -4,14 +4,16 @@ pipeline{
     stage('Checkout'){
       steps{
         checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/develop']],
-                    extensions: [],
-                    userRemoteConfigs: [[
-                        url: 'http://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.backend.git',
-                        credentialsId: 'gitlab-pat'  // ID credential chứa PAT
-                    ]]
-                ])
+          $class: 'GitSCM',
+          branches: [[name: '*/develop']],
+          extensions: [
+            [$class: 'CloneOption', shallow: true, depth: 1]
+          ],
+          userRemoteConfigs: [[
+            url: 'https://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.backend.git',
+            credentialsId: 'gitlab-pat'
+          ]]
+        ]) 
       }
     }
     stage('Build'){
