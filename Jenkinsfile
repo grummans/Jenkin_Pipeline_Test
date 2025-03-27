@@ -18,14 +18,13 @@ pipeline{
         ]) 
       }
     }
-    stage('Build & Unit Test') {
+    stage('Test') {
       steps {
         sh 'gradle clean test'  // Chạy unit test tự động
       }
       post {
         always {
-          junit '**/build/test-results/test/*.xml'
-              
+          junit '**/build/test-results/test/*.xml'   
         }
       }
     }
