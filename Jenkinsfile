@@ -1,7 +1,5 @@
 pipeline{
-  agent {
-    label 'gradle-jdk17'
-  }
+  agent any
   stages{
     stage('Checkout'){
       steps{
@@ -20,12 +18,14 @@ pipeline{
     }
     stage('Test') {
       steps {
-        sh 'gradle clean test'  // Chạy unit test tự động
-      }
-      post {
-        always {
-          junit '**/build/test-results/test/*.xml'   
-        }
+        script {
+          try{
+            sh './gradlew test'
+            junit '/build/test-results/test/**/*.xml' 
+          } catch (err) {
+            error ("log:  buid/reports/tests")
+          }
+        } 
       }
     } 
   }
