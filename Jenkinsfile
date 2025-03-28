@@ -21,7 +21,7 @@ pipeline{
         script {
           try{
             sh './gradlew test'
-            junit '/build/test-results/test/**/*.xml' 
+            junit 'build/test-results/test/**/*.xml' 
           } catch (err) {
             error ("log:  buid/reports/tests")
           }
