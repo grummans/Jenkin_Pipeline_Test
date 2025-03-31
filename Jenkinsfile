@@ -10,7 +10,7 @@ pipeline{
             [$class: 'CloneOption', shallow: true, depth: 1]
           ],
           userRemoteConfigs: [[
-            url: 'https://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.backend.git',
+            url: 'https://github.com/grummans/20-Days-Java-Hardcore.git',
             credentialsId: 'github-ssh'
           ]]
         ]) 
