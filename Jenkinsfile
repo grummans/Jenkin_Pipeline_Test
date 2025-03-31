@@ -20,8 +20,7 @@ pipeline{
       steps {
         script {
           try{
-            sh './gradlew test'
-            junit 'build/test-results/test/**/*.xml' 
+            sh 'mvn test'
           } catch (err) {
             error ("log:  buid/reports/tests")
           }
