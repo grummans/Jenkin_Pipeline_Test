@@ -11,7 +11,7 @@ pipeline{
           ],
           userRemoteConfigs: [[
             url: 'https://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.backend.git',
-            credentialsId: 'grummans'
+            credentialsId: 'github-ssh'
           ]]
         ]) 
       }
